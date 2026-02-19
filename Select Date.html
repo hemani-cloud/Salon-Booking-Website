@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxe Salon</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- Manrope Font -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Manrope',sans-serif;
+}
+
+.nav-space{
+  height:80px;
+}
+
+/* ===== NAVBAR ===== */
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  height:80px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 70px;
+  z-index:999;
+  border-bottom:2px solid #ED2B7D ;
+  background:transparent;
+  transition:.3s;
+}
+
+/* scroll effect */
+.navbar.scrolled{
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(8px);
+  box-shadow:0 5px 25px rgba(0,0,0,0.08);
+}
+
+/* ===== LOGO LEFT ===== */
+.logo{
+  font-size:2rem;
+  font-weight:800;
+  color:#111;
+  text-decoration:none;
+}
+
+/* ===== RIGHT SIDE ===== */
+.right-nav{
+  display:flex;
+  align-items:center;
+  gap:35px;
+}
+
+/* links */
+.nav-links{
+  display:flex;
+  list-style:none;
+  gap:35px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#333;
+  font-size:1.5rem;
+  font-weight:500;
+  transition:.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+  color:#ED2B7D;
+}
+
+/* button */
+.book-btn{
+  background:#ED2B7D;
+  color:#fff;
+  padding:12px 22px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:1.5rem;
+  box-shadow:0 10px 25px rgba(255,45,122,0.3);
+  transition:.3s;
+}
+
+.book-btn:hover{
+  transform:translateY(-2px);
+}
+
+    .wrap{
+      width:92%;
+      max-width:100%;
+      margin:40px auto;
+    }
+
+    .top-title{
+      font-size:3rem;
+      font-weight:800;
+      margin-bottom:18px;
+    }
+
+    .cal-row{
+      display:flex;
+      justify-content:center;
+      gap:80px;
+      margin-top:10px;
+      margin-bottom:30px;
+    }
+
+    .month{
+      width:560px;
+      text-align:center;
+      font-size:1.5rem;
+    }
+
+    .month-head{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+      margin-bottom:8px;
+      font-weight:700;
+    }
+
+    .nav-btn{
+      border:none;
+      background:transparent;
+      font-size:1.5rem;
+      cursor:pointer;
+      color:#777;
+      line-height:1;
+    }
+
+    .dow, .grid{
+      display:grid;
+      grid-template-columns:repeat(7, 1fr);
+      gap:8px;
+      justify-items:center;
+    }
+
+    .dow span{
+      font-size:1.5rem;
+      color:#777;
+      font-weight:700;
+      padding:6px 0;
+    }
+
+    .day{
+      width:40px;
+      height:40px;
+      border:none;
+      background:transparent;
+      border-radius:50%;
+      cursor:pointer;
+      font-size:1.5rem;
+      color:#2b2527;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .day.muted{color:#c0b8bb; cursor:default;}
+    .day:hover:not(.muted){background:#f4eef1;}
+    .day.active{background:#ff2d7a;color:#fff;font-weight:800;}
+
+    /* ===== TIME SECTION ===== */
+    .time-section{
+      margin-top:10px;
+      display:none;
+    }
+    .time-section.show{display:block;}
+
+    .time-title{
+      font-size:44px;
+      font-weight:800;
+      margin-bottom:22px;
+    }
+
+    .selected-date{
+      font-weight:800;
+      font-size:2rem;
+      margin-bottom:16px;
+    }
+
+    .time-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 130px);
+      gap:18px;
+      margin-top:8px;
+    }
+
+    .time-btn{
+      border:none;
+      background:#ff2d7a;
+      color:#1b1718;
+      padding:14px 0;
+      border-radius:10px;
+      font-weight:700;
+      cursor:pointer;
+      font-size:1.5rem;
+    }
+
+    .time-btn.active{
+      background:#ff2d7a;
+      color:#fff;
+      box-shadow:0 10px 20px rgba(255,45,122,0.25);
+    }
+
+    .next-wrap{
+      display:flex;
+      justify-content:flex-end;
+      margin-top:120px;
+    }
+
+    .next-btn{
+      border:none;
+      background:#ED2B7D;
+      color:#fff;
+      padding:14px 34px;
+      border-radius:10px;
+      font-weight:800;
+      font-size: 1.5rem;
+      cursor:pointer;
+      box-shadow:0 10px 20px rgba(255,45,122,0.25);
+    }
+
+    .next-btn:disabled{
+      opacity:.5;
+      cursor:not-allowed;
+      box-shadow:none;
+    }
+
+    @media(max-width:900px){
+      .cal-row{flex-direction:column;align-items:center;gap:30px;}
+      .time-title{font-size:34px;}
+      .next-wrap{margin-top:60px;}
+    }
+.footer{
+  background:#d8c3cb;
+  padding:40px 0;
+  text-align:center;
+  font-family:'Manrope',sans-serif;
+}
+
+.footer-links{
+  list-style:none;
+  display:flex;
+  justify-content:center;
+  gap:50px;
+  margin-bottom:20px;
+}
+
+.footer-links a{
+  text-decoration:none;
+  color:#2b2527;
+  font-size:1.5rem;
+}
+
+.social-icons{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-bottom:15px;
+}
+
+.social-icons a{
+  color:#2b2527;
+  font-size:1.5rem;
+  transition:.3s;
+}
+
+.social-icons a:hover{
+  color:#ff2d7a;
+}
+
+.copyright{
+  font-size:1.5rem;
+  color:#2b2527;
+}
+</style>
+</head>
+
+<body>
+
+<div class="nav-space"></div>
+
+<nav class="navbar">
+  <!-- left logo -->
+  <a href="Home.html" class="logo">❂ Luxe Salon</a>
+
+  <!-- right side -->
+  <div class="right-nav">
+    <ul class="nav-links">
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="Services.html">Services</a></li>
+      <li><a href="About Us.html">About</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+
+    <a href="Select Service.html" class="book-btn">Book Now</a>
+  </div>
+</nav>
+ <div class="wrap">
+    <div class="top-title">Select Date</div>
+
+    <div class="cal-row">
+      <!-- JULY -->
+      <div class="month" data-month="6" data-year="2024">
+        <div class="month-head">
+          <button class="nav-btn" type="button">‹</button>
+          <div>July 2024</div>
+          <button class="nav-btn" type="button">›</button>
+        </div>
+
+        <div class="dow">
+          <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+        </div>
+
+        <div class="grid">
+          <!-- 1st week offset (July 2024 starts on Monday, so Sunday is blank) -->
+          <button class="day muted" type="button"></button>
+          <button class="day" type="button" data-date="2024-07-01">1</button>
+          <button class="day" type="button" data-date="2024-07-02">2</button>
+          <button class="day" type="button" data-date="2024-07-03">3</button>
+          <button class="day" type="button" data-date="2024-07-04">4</button>
+          <button class="day" type="button" data-date="2024-07-05">5</button>
+          <button class="day" type="button" data-date="2024-07-06">6</button>
+
+          <button class="day" type="button" data-date="2024-07-07">7</button>
+          <button class="day" type="button" data-date="2024-07-08">8</button>
+          <button class="day" type="button" data-date="2024-07-09">9</button>
+          <button class="day" type="button" data-date="2024-07-10">10</button>
+          <button class="day" type="button" data-date="2024-07-11">11</button>
+          <button class="day" type="button" data-date="2024-07-12">12</button>
+          <button class="day" type="button" data-date="2024-07-13">13</button>
+
+          <button class="day" type="button" data-date="2024-07-14">14</button>
+          <button class="day" type="button" data-date="2024-07-15">15</button>
+          <button class="day" type="button" data-date="2024-07-16">16</button>
+          <button class="day" type="button" data-date="2024-07-17">17</button>
+          <button class="day" type="button" data-date="2024-07-18">18</button>
+          <button class="day" type="button" data-date="2024-07-19">19</button>
+          <button class="day" type="button" data-date="2024-07-20">20</button>
+
+          <button class="day" type="button" data-date="2024-07-21">21</button>
+          <button class="day" type="button" data-date="2024-07-22">22</button>
+          <button class="day" type="button" data-date="2024-07-23">23</button>
+          <button class="day" type="button" data-date="2024-07-24">24</button>
+          <button class="day" type="button" data-date="2024-07-25">25</button>
+          <button class="day" type="button" data-date="2024-07-26">26</button>
+          <button class="day" type="button" data-date="2024-07-27">27</button>
+
+          <button class="day" type="button" data-date="2024-07-28">28</button>
+          <button class="day" type="button" data-date="2024-07-29">29</button>
+          <button class="day" type="button" data-date="2024-07-30">30</button>
+          <button class="day" type="button" data-date="2024-07-31">31</button>
+          <button class="day muted" type="button"></button>
+          <button class="day muted" type="button"></button>
+          <button class="day muted" type="button"></button>
+        </div>
+      </div>
+
+      <!-- AUGUST -->
+      <div class="month" data-month="7" data-year="2024">
+        <div class="month-head">
+          <button class="nav-btn" type="button">‹</button>
+          <div>August 2024</div>
+          <button class="nav-btn" type="button">›</button>
+        </div>
+
+        <div class="dow">
+          <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+        </div>
+
+        <div class="grid">
+          <!-- August 2024 starts on Thursday (Sun, Mon, Tue, Wed blanks) -->
+          <button class="day muted" type="button"></button>
+          <button class="day muted" type="button"></button>
+          <button class="day muted" type="button"></button>
+          <button class="day muted" type="button"></button>
+
+          <button class="day" type="button" data-date="2024-08-01">1</button>
+          <button class="day" type="button" data-date="2024-08-02">2</button>
+          <button class="day" type="button" data-date="2024-08-03">3</button>
+
+          <button class="day" type="button" data-date="2024-08-04">4</button>
+          <button class="day" type="button" data-date="2024-08-05">5</button>
+          <button class="day" type="button" data-date="2024-08-06">6</button>
+          <button class="day" type="button" data-date="2024-08-07">7</button>
+          <button class="day" type="button" data-date="2024-08-08">8</button>
+          <button class="day" type="button" data-date="2024-08-09">9</button>
+          <button class="day" type="button" data-date="2024-08-10">10</button>
+
+          <button class="day" type="button" data-date="2024-08-11">11</button>
+          <button class="day" type="button" data-date="2024-08-12">12</button>
+          <button class="day" type="button" data-date="2024-08-13">13</button>
+          <button class="day" type="button" data-date="2024-08-14">14</button>
+          <button class="day" type="button" data-date="2024-08-15">15</button>
+          <button class="day" type="button" data-date="2024-08-16">16</button>
+          <button class="day" type="button" data-date="2024-08-17">17</button>
+
+          <button class="day" type="button" data-date="2024-08-18">18</button>
+          <button class="day" type="button" data-date="2024-08-19">19</button>
+          <button class="day" type="button" data-date="2024-08-20">20</button>
+          <button class="day" type="button" data-date="2024-08-21">21</button>
+          <button class="day" type="button" data-date="2024-08-22">22</button>
+          <button class="day" type="button" data-date="2024-08-23">23</button>
+          <button class="day" type="button" data-date="2024-08-24">24</button>
+
+          <button class="day" type="button" data-date="2024-08-25">25</button>
+          <button class="day" type="button" data-date="2024-08-26">26</button>
+          <button class="day" type="button" data-date="2024-08-27">27</button>
+          <button class="day" type="button" data-date="2024-08-28">28</button>
+          <button class="day" type="button" data-date="2024-08-29">29</button>
+          <button class="day" type="button" data-date="2024-08-30">30</button>
+          <button class="day" type="button" data-date="2024-08-31">31</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIME (shows after clicking a date) -->
+    <section class="time-section" id="timeSection">
+      <div class="time-title">Select a time</div>
+      <div class="selected-date" id="selectedDateText">Friday, July 12</div>
+
+      <div class="time-grid" id="timeGrid">
+        <button class="time-btn active" type="button">9:00 AM</button>
+        <button class="time-btn" type="button">9:30 AM</button>
+
+        <button class="time-btn" type="button">11:00 AM</button>
+        <button class="time-btn" type="button">11:30 AM</button>
+
+        <button class="time-btn" type="button">2:00 PM</button>
+        <button class="time-btn" type="button">2:30 PM</button>
+
+        <button class="time-btn" type="button">5:00 PM</button>
+        <button class="time-btn" type="button">5:30 PM</button>
+      </div>
+
+      <div class="next-wrap">
+        <a href="Details.html"><button class="next-btn" id="nextBtn" disabled>Next</button></a>
+      </div>
+    </section>
+  </div>
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Links -->
+    <ul class="footer-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Book</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <!-- Social Icons -->
+    <div class="social-icons">
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#"><i class="fa-brands fa-twitter"></i></a>
+    </div>
+
+    <p class="copyright">©2024 Luxe Salon. All rights reserved.</p>
+  </div>
+</footer>
+<script>
+const navbar=document.querySelector(".navbar");
+window.addEventListener("scroll",()=>{
+  navbar.classList.toggle("scrolled",window.scrollY>20);
+});
+</script>
+
+  <script>
+    const days = document.querySelectorAll(".day[data-date]");
+    const timeSection = document.getElementById("timeSection");
+    const selectedDateText = document.getElementById("selectedDateText");
+    const timeBtns = document.querySelectorAll(".time-btn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    // Format like: Friday, July 12
+    function formatPretty(dateStr){
+      const d = new Date(dateStr + "T00:00:00");
+      const weekday = d.toLocaleDateString("en-US", { weekday: "long" });
+      const month = d.toLocaleDateString("en-US", { month: "long" });
+      const day = d.getDate();
+      return `${weekday}, ${month} ${day}`;
+    }
+
+    // click date -> show time section + highlight date
+    days.forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        document.querySelectorAll(".day").forEach(d=>d.classList.remove("active"));
+        btn.classList.add("active");
+
+        selectedDateText.textContent = formatPretty(btn.dataset.date);
+        timeSection.classList.add("show");
+
+        // reset time selection + disable next until time clicked
+        timeBtns.forEach(t=>t.classList.remove("active"));
+        nextBtn.disabled = true;
+      });
+    });
+
+    // click time -> highlight time + enable next
+    timeBtns.forEach(t=>{
+      t.addEventListener("click", ()=>{
+        timeBtns.forEach(x=>x.classList.remove("active"));
+        t.classList.add("active");
+        nextBtn.disabled = false;
+      });
+    });
+  </script>
+</body>
+</html>

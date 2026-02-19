@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxe Salon</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- Manrope Font -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Manrope',sans-serif;
+}
+
+.nav-space{
+  height:80px;
+}
+
+/* ===== NAVBAR ===== */
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  height:80px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 70px;
+  z-index:999;
+  border-bottom:2px solid #ED2B7D ;
+  background:transparent;
+  transition:.3s;
+}
+
+/* scroll effect */
+.navbar.scrolled{
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(8px);
+  box-shadow:0 5px 25px rgba(0,0,0,0.08);
+}
+
+/* ===== LOGO LEFT ===== */
+.logo{
+  font-size:2rem;
+  font-weight:800;
+  color:#111;
+  text-decoration:none;
+}
+
+/* ===== RIGHT SIDE ===== */
+.right-nav{
+  display:flex;
+  align-items:center;
+  gap:35px;
+}
+
+/* links */
+.nav-links{
+  display:flex;
+  list-style:none;
+  gap:35px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#333;
+  font-size:1.5rem;
+  font-weight:500;
+  transition:.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+  color:#ED2B7D;
+}
+
+/* button */
+.book-btn{
+  background:#ED2B7D;
+  color:#fff;
+  padding:12px 22px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:1.5rem;
+  box-shadow:0 10px 25px rgba(255,45,122,0.3);
+  transition:.3s;
+}
+
+.book-btn:hover{
+  transform:translateY(-2px);
+}
+
+.success{
+  padding:40px 0 70px;
+}
+
+.s-wrap{
+  width:92%;
+  max-width:1500px;
+  margin:0 auto;
+  text-align:center;
+}
+
+.s-wrap h2{
+  font-size:2rem;
+  font-weight:800;
+  color:#1b1718;
+  margin-bottom:14px;
+}
+
+/* big image */
+.s-banner{
+  width:100%;
+  height:320px;
+  border-radius:6px;
+  overflow:hidden;
+  margin:0 auto 18px;
+}
+
+.s-banner img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* details */
+.s-details{
+  text-align:left;
+}
+
+.s-details h3{
+  font-size:1.5rem;
+  font-weight:800;
+  color:#1b1718;
+  margin-bottom:10px;
+}
+
+/* grid lines like screenshot */
+.s-grid{
+  border-top:1px solid #ece8ea;
+  margin-top:8px;
+}
+
+.s-row{
+  display:grid;
+  grid-template-columns: 1fr 2fr;
+  gap:30px;
+  padding:14px 0;
+  border-bottom:1px solid #ece8ea;
+}
+
+.s-item{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.label{
+  font-size:1.5rem;
+  color:#9b8f93;
+  font-weight:600;
+}
+
+.value{
+  font-size:1.5rem;
+  color:#1b1718;
+  font-weight:700;
+}
+
+.empty{visibility:hidden;}
+
+/* buttons */
+.s-actions{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-top:22px;
+}
+
+.btn{
+  text-decoration:none;
+  padding:9px 16px;
+  border-radius:6px;
+  font-size:1.5rem;
+  font-weight:800;
+  display:inline-block;
+}
+
+.btn.light{
+  background:#f2eef0;
+  color:#1b1718;
+}
+
+.btn.pink{
+  background:#ff2d7a;
+  color:#fff;
+  box-shadow:0 10px 20px rgba(255,45,122,0.25);
+}
+
+.btn.pink:hover{background:#e0246b;}
+
+/* responsive */
+@media(max-width:700px){
+  .s-row{grid-template-columns:1fr;gap:10px;}
+  .s-banner{height:220px;}
+  .s-actions{flex-direction:column;}
+}
+.footer{
+  background:#d8c3cb;
+  padding:40px 0;
+  text-align:center;
+  font-family:'Manrope',sans-serif;
+}
+
+.footer-links{
+  list-style:none;
+  display:flex;
+  justify-content:center;
+  gap:50px;
+  margin-bottom:20px;
+}
+
+.footer-links a{
+  text-decoration:none;
+  color:#2b2527;
+  font-size:1.5rem;
+}
+
+.social-icons{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-bottom:15px;
+}
+
+.social-icons a{
+  color:#2b2527;
+  font-size:1.5rem;
+  transition:.3s;
+}
+
+.social-icons a:hover{
+  color:#ff2d7a;
+}
+
+.copyright{
+  font-size:1.5rem;
+  color:#2b2527;
+}
+</style>
+</head>
+
+<body>
+
+<div class="nav-space"></div>
+
+<nav class="navbar">
+  <!-- left logo -->
+  <a href="Home.html" class="logo">❂ Luxe Salon</a>
+
+  <!-- right side -->
+  <div class="right-nav">
+    <ul class="nav-links">
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="Services.html">Services</a></li>
+      <li><a href="About Us.html">About</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+
+    <a href="Select Service.html" class="book-btn">Book Now</a>
+  </div>
+</nav>
+<section class="success">
+  <div class="s-wrap">
+
+    <h2>Your appointment is booked!</h2>
+
+    <div class="s-banner">
+      <img src="Images/Depth 6, Frame 0 (1).jpg" alt="Success">
+    </div>
+
+    <div class="s-details">
+      <h3>Booking Details</h3>
+
+      <div class="s-grid">
+        <div class="s-row">
+          <div class="s-item">
+            <span class="label">Booking ID</span>
+            <span class="value">#1234567890</span>
+          </div>
+
+          <div class="s-item">
+            <span class="label">Service</span>
+            <span class="value">Haircut</span>
+          </div>
+        </div>
+
+        <div class="s-row">
+          <div class="s-item">
+            <span class="label">Professional</span>
+            <span class="value">Emily Carter</span>
+          </div>
+
+          <div class="s-item">
+            <span class="label">Date</span>
+            <span class="value">July 20, 2024</span>
+          </div>
+        </div>
+
+        <div class="s-row">
+          <div class="s-item">
+            <span class="label">Time</span>
+            <span class="value">2:00 PM</span>
+          </div>
+
+          <div class="s-item empty"></div>
+        </div>
+      </div>
+
+      <div class="s-actions">
+        <a href="Home.html" class="btn light">Go to Home</a>
+        <a href="Services.html" class="btn pink">Book Another Appointment</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Links -->
+    <ul class="footer-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Book</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <!-- Social Icons -->
+    <div class="social-icons">
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#"><i class="fa-brands fa-twitter"></i></a>
+    </div>
+
+    <p class="copyright">©2024 Luxe Salon. All rights reserved.</p>
+  </div>
+</footer>
+<script>
+const navbar=document.querySelector(".navbar");
+window.addEventListener("scroll",()=>{
+  navbar.classList.toggle("scrolled",window.scrollY>20);
+});
+</script>
+
+</body>
+</html>
